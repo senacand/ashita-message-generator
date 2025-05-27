@@ -35,6 +35,26 @@ h1 {
     opacity: 1;
 }
 
+.promo-message {
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 12px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.promo-message a {
+    color: #87ceeb;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.promo-message a:hover {
+    color: #add8e6;
+    text-decoration: underline;
+}
+
 .container {
     max-width: 100%;
     width: 100%;

@@ -1,6 +1,8 @@
 # 🌤️ Ashita Message Generator
 
-A beautiful web-based tool for creating stylized text overlays with markdown support and highlighting. Perfect for social media posts, **clarifications**, and announcements.
+A beautiful web-based tool for creating stylized text overlays with markdown support and highlighting. Perfect for social media posts, ***clarifications***, and announcements.
+
+A fork of [Blue Sky Message Generator](https://github.com/senacand/blue-sky-message-generator)
 
 ## 🖼️ Screenshot
 
