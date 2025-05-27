@@ -1,0 +1,230 @@
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.github-link {
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    font-size: 14px;
+    transition: opacity 0.2s;
+    width: 100%;
+}
+
+.github-link:hover {
+    opacity: 1;
+}
+
+.container {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preview-container {
+    margin: 20px 0;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: #2a2a2a;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#imageCanvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    touch-action: manipulation;
+}
+
+.text-controls {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: rgba(42, 42, 42, 0.5);
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.icon-btn {
+    padding: 8px;
+    min-width: 36px;
+    height: 36px;
+    width: auto;
+    background: transparent;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.icon-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#fontSize {
+    min-width: 24px;
+    text-align: center;
+    font-size: 14px;
+}
+
+textarea {
+    width: calc(100% - 24px);
+    padding: 12px;
+    border: 1px solid #3a3a3a;
+    border-radius: 12px;
+    background: rgba(42, 42, 42, 0.5);
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    resize: none;
+    min-height: 100px;
+    outline: none;
+}
+
+button {
+    padding: 12px 24px;
+    background: rgba(42, 42, 42, 0.5);
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 1024px) {
+    .container {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 40px;
+        max-width: 1200px;
+        padding: 0 40px;
+    }
+
+    .preview-container {
+        flex: 1;
+        margin: 0;
+    }
+
+    .editor-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    h1 {
+        width: 100%;
+        position: absolute;
+        top: 20px;
+        left: 0;
+        margin: 0;
+    }
+
+    .container {
+        margin-top: 80px;
+    }
+}
+
+@media (max-width: 1023px) {
+    body {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+
+    .preview-container {
+        margin: 0 0 20px 0;
+        width: 100%;
+    }
+
+    textarea {
+        min-height: 80px;
+    }
+
+    button {
+        padding: 10px 20px;
+    }
+
+    .text-controls {
+        gap: 10px;
+    }
+
+    .control-group {
+        padding: 4px;
+    }
+
+    .icon-btn {
+        padding: 6px;
+        min-width: 32px;
+        height: 32px;
+    }
+
+    .github-link {
+        margin-top: 16px;
+    }
+
+    .editor-section {
+        width: 100%;
+    }
+
+    .container {
+        max-width: 428px;
+        padding: 0;
+    }
+} 
