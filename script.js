@@ -13,7 +13,17 @@ let textSettings = {
 };
 
 // Restore text and settings from localStorage if exists
-const savedText = localStorage.getItem('bluesky-text') || '';
+const savedText = localStorage.getItem('bluesky-text') || 
+`# Naik Delman
+
+1. Pada hari minggu kuturut <y>ayah ke kota</y>
+
+2. Naik <o>delman istimewa</o> kududuk di muka
+
+3. Kududuk <y>samping pak kusir</y> yang <o>sedang bekerja</o>
+
+4. Mengendarai kuda supaya <o>BAIK JALANNYA</o>`;
+
 const savedSettings = JSON.parse(localStorage.getItem('bluesky-text-settings') || JSON.stringify(textSettings));
 textSettings = savedSettings;
 textInput.value = savedText;
