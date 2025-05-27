@@ -1,4 +1,4 @@
-# 🌤️ Ashita Message Generator
+# 🌤️ Honjitsu Message Generator
 
 A beautiful web-based tool for creating stylized text overlays with markdown support and highlighting. Perfect for social media posts, ***clarifications***, and announcements.
 
@@ -6,7 +6,7 @@ A fork of [Blue Sky Message Generator](https://github.com/senacand/blue-sky-mess
 
 ## 🖼️ Screenshot
 
-![Ashita Message Generator Screenshot](assets/screenshot.png)
+![Ashita Message Generator Screenshot](assets/honjitsu-screenshot.png)
 
 
 ## ✨ Features
@@ -129,11 +129,6 @@ Contributions are welcome! Feel free to:
 - Suggest new features
 - Submit pull requests
 - Improve documentation
-
-## 🔗 Links
-
-- **Live Demo**: [ashitagenshin.sena.dev](https://ashitagenshin.sena.dev)
-- **Source Code**: [GitHub Repository](https://github.com/senacand/ashita-message-generator)
 
 ## ⚠️ Disclaimer
 

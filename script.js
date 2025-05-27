@@ -2,9 +2,8 @@ const canvas = document.getElementById('imageCanvas');
 const ctx = canvas.getContext('2d');
 const textInput = document.getElementById('textInput');
 
-// Load the ashita logo image
-const ashitaLogo = new Image();
-ashitaLogo.src = 'assets/ashita.png';
+// Load the honjitsu logo image
+const honjitsuLogo = new Image();
 
 // Default text settings
 let textSettings = {
@@ -25,7 +24,14 @@ document.getElementById('fontSize').textContent = textSettings.fontSize;
 // Set canvas size
 canvas.width = 1000;
 canvas.height = 1200;
-drawImage(savedText);
+
+// Load the image and draw initial canvas after it loads
+honjitsuLogo.onload = function() {
+    drawImage(savedText);
+};
+
+// Set image source after setting up the onload handler
+honjitsuLogo.src = 'assets/honjitsu.png';
 
 function parseMarkdown(text) {
     const lines = text.split('\n');
@@ -97,12 +103,12 @@ function drawImage(text = '') {
     ctx.fillStyle = '#191919';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Draw ashita logo in top right corner
-    if (ashitaLogo.complete && ashitaLogo.naturalHeight !== 0) {
+    // Draw honjitsu logo in top right corner
+    if (honjitsuLogo.complete && honjitsuLogo.naturalHeight !== 0) {
         const logoSize = 140; // Adjust size as needed
         const logoX = canvas.width - logoSize - 10;
         const logoY = 0;
-        ctx.drawImage(ashitaLogo, logoX, logoY, logoSize, logoSize);
+        ctx.drawImage(honjitsuLogo, logoX, logoY, logoSize, logoSize);
     }
     
     if (text) {
@@ -443,7 +449,7 @@ function generateImage() {
     drawImage(text);
     
     const link = document.createElement('a');
-    link.download = 'blue-sky-message.png';
+    link.download = 'honjitsu-message.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
 }
