@@ -2,6 +2,11 @@
 
 A beautiful web-based tool for creating stylized text overlays with markdown support and highlighting. Perfect for social media posts, **clarifications**, and announcements.
 
+## 🖼️ Screenshot
+
+![Ashita Message Generator Screenshot](assets/screenshot.png)
+
+
 ## ✨ Features
 
 ### 🎨 Text Styling
