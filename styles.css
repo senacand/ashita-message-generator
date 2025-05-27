@@ -196,6 +196,10 @@ button:hover {
     .container {
         margin-top: 80px;
     }
+
+    #textInput {
+        min-height: 400px;
+    }
 }
 
 @media (max-width: 1023px) {
