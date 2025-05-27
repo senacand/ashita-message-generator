@@ -31,7 +31,7 @@ honjitsuLogo.onload = function() {
 };
 
 // Set image source after setting up the onload handler
-honjitsuLogo.src = 'assets/honjitsu.png';
+honjitsuLogo.src = 'assets/honjitsu-logo-new.png';
 
 function parseMarkdown(text) {
     const lines = text.split('\n');
@@ -105,9 +105,9 @@ function drawImage(text = '') {
     
     // Draw honjitsu logo in top right corner
     if (honjitsuLogo.complete && honjitsuLogo.naturalHeight !== 0) {
-        const logoSize = 140; // Adjust size as needed
-        const logoX = canvas.width - logoSize - 10;
-        const logoY = 0;
+        const logoSize = 200; // Adjust size as needed
+        const logoX = canvas.width - logoSize - 20;
+        const logoY = -15;
         ctx.drawImage(honjitsuLogo, logoX, logoY, logoSize, logoSize);
     }
     
