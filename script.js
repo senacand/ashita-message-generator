@@ -2,8 +2,103 @@ const canvas = document.getElementById('imageCanvas');
 const ctx = canvas.getContext('2d');
 const textInput = document.getElementById('textInput');
 
-// Load the honjitsu logo image
-const honjitsuLogo = new Image();
+const logos = [
+    {
+        filename: 'honjitsu-logo-new.png',
+        displayName: 'Stylish',
+        size: 200,
+        x: -20,
+        y: -15
+    },
+    {
+        filename: 'honjitsu.png',
+        displayName: 'Simple',
+        size: 140,
+        x: -20,
+        y: 10
+    },
+    {
+        filename: 'ashita.png',
+        displayName: 'Ashita',
+        size: 150,
+        x: -15,
+        y: 5
+    },
+    {
+        filename: null,
+        displayName: 'No logo',
+        size: 0,
+        x: 0,
+        y: 0
+    },
+];
+
+// Create background images object from logos array
+const backgroundImages = {};
+logos.forEach(logo => {
+    if (logo.filename) { // Only create image objects for actual files
+        backgroundImages[logo.filename] = new Image();
+    }
+});
+
+// Create image config object from logos array
+const imageConfig = {};
+logos.forEach(logo => {
+    if (logo.filename) { // Only create config for actual files
+        imageConfig[logo.filename] = {
+            size: logo.size,
+            x: logo.x,
+            y: logo.y
+        };
+    }
+});
+
+// Populate dropdown with logo options
+function populateLogoDropdown() {
+    const select = document.getElementById('backgroundImageSelect');
+    if (select) {
+        // Clear existing options
+        select.innerHTML = '';
+        
+        // Add options from logos array
+        logos.forEach(logo => {
+            const option = document.createElement('option');
+            option.value = logo.filename || 'none'; // Use 'none' for "No logo"
+            option.textContent = logo.displayName;
+            select.appendChild(option);
+        });
+        
+        // Set the saved/default selection
+        select.value = currentBackgroundImage;
+    }
+}
+
+// Restore background image from localStorage or use default (first logo)
+const savedBackgroundImage = localStorage.getItem('honjitsu-background-image') || logos[0].filename;
+let currentBackgroundImage = savedBackgroundImage;
+
+let imagesLoaded = 0;
+const totalImages = Object.keys(backgroundImages).length;
+
+// Load all background images
+Object.keys(backgroundImages).forEach(imageName => {
+    const img = backgroundImages[imageName];
+    img.onload = function() {
+        imagesLoaded++;
+        if (imagesLoaded === totalImages) {
+            // All images loaded, populate dropdown and draw initial canvas
+            populateLogoDropdown();
+            drawImage(savedText);
+        }
+    };
+    img.src = `assets/${imageName}`;
+});
+
+// If there are no images to load (only "No logo" option), initialize immediately
+if (totalImages === 0) {
+    populateLogoDropdown();
+    drawImage(savedText);
+}
 
 // Default text settings
 let textSettings = {
@@ -34,14 +129,6 @@ document.getElementById('fontSize').textContent = textSettings.fontSize;
 // Set canvas size
 canvas.width = 1000;
 canvas.height = 1200;
-
-// Load the image and draw initial canvas after it loads
-honjitsuLogo.onload = function() {
-    drawImage(savedText);
-};
-
-// Set image source after setting up the onload handler
-honjitsuLogo.src = 'assets/honjitsu-logo-new.png';
 
 function parseMarkdown(text) {
     const lines = text.split('\n');
@@ -113,12 +200,25 @@ function drawImage(text = '') {
     ctx.fillStyle = '#191919';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Draw honjitsu logo in top right corner
-    if (honjitsuLogo.complete && honjitsuLogo.naturalHeight !== 0) {
-        const logoSize = 200; // Adjust size as needed
-        const logoX = canvas.width - logoSize - 20;
-        const logoY = -15;
-        ctx.drawImage(honjitsuLogo, logoX, logoY, logoSize, logoSize);
+    // Draw logo in top right corner (if one is selected)
+    if (currentBackgroundImage && currentBackgroundImage !== 'none' && 
+        backgroundImages[currentBackgroundImage] && 
+        backgroundImages[currentBackgroundImage].complete && 
+        backgroundImages[currentBackgroundImage].naturalHeight !== 0) {
+        const config = imageConfig[currentBackgroundImage];
+        if (config) {
+            const logoSize = config.size;
+            const logoX = canvas.width - logoSize + config.x;
+            const logoY = config.y;
+            ctx.drawImage(backgroundImages[currentBackgroundImage], logoX, logoY, logoSize, logoSize);
+        } else {
+            // Fallback configuration if not found in imageConfig
+            console.warn(`No configuration found for image: ${currentBackgroundImage}`);
+            const logoSize = 200;
+            const logoX = canvas.width - logoSize - 20;
+            const logoY = -15;
+            ctx.drawImage(backgroundImages[currentBackgroundImage], logoX, logoY, logoSize, logoSize);
+        }
     }
     
     if (text) {
@@ -414,8 +514,6 @@ function calculateLineWidth(line) {
     return width;
 }
 
-
-
 // Font size controls
 document.getElementById('increaseFontSize').addEventListener('click', () => {
     textSettings.fontSize = Math.min(72, textSettings.fontSize + 2);
@@ -447,6 +545,13 @@ document.querySelectorAll('[data-valign]').forEach(button => {
         textSettings.verticalAlign = button.dataset.valign;
         saveSettingsAndRedraw();
     });
+});
+
+// Background image selector
+document.getElementById('backgroundImageSelect').addEventListener('change', (e) => {
+    currentBackgroundImage = e.target.value;
+    localStorage.setItem('honjitsu-background-image', currentBackgroundImage);
+    drawImage(textInput.value);
 });
 
 function saveSettingsAndRedraw() {

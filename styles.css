@@ -126,6 +126,49 @@ h1 {
     font-size: 14px;
 }
 
+.image-selector {
+    gap: 8px !important;
+    align-items: center;
+}
+
+.selector-label {
+    color: #ffffff;
+    opacity: 0.8;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+#backgroundImageSelect {
+    background: rgba(42, 42, 42, 0.8);
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 6px 8px;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    outline: none;
+    min-width: 80px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#backgroundImageSelect:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #4a4a4a;
+}
+
+#backgroundImageSelect:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #5a5a5a;
+}
+
+#backgroundImageSelect option {
+    background: #2a2a2a;
+    color: #ffffff;
+    padding: 4px;
+}
+
 textarea {
     width: calc(100% - 24px);
     padding: 12px;
